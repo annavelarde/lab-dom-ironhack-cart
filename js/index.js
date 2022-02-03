@@ -7,18 +7,24 @@ function updateSubtotal(product) {
 
   // getting elements value
   const priceValue = price.innerHTML;
-  console.log(priceValue);
+  // console.log(priceValue);
 
   const quantityValue = quantity.value;
-  console.log(quantityValue);
+  // console.log(quantityValue);
 
   const totalValue = priceValue * quantityValue;
-  console.log(totalValue);
+  // console.log(totalValue);
 
   // getting dom subtotal to be able to swap with totalValue
   const subtotal = product.querySelector('.subtotal span');
   subtotal.innerHTML = totalValue;
+
+  //return subtotal value
+  return totalValue;
 }
+
+// ITERATION 2
+//... your code goes here
 
 function calculateAll() {
   // code in the following two lines is added just for testing purposes.
@@ -27,20 +33,28 @@ function calculateAll() {
   // updateSubtotal(singleProduct);
   // end of test
 
-  // ITERATION 2
-  //... your code goes here
-  const getElements = document.getElementsByClassName('.product');
-  console.log(getElements);
-  product.innerHTML = getElements;
+  const getElements = document.getElementsByClassName('product');
+  // console.log(getElements);
 
-  updateSubtotal(getElements);
+  // let initialSubtotal = 0;
+  // // console.log(initialSubtotal);
+  // for (const i = 0; i < getElements.length; i++) {
+  //   initialSubtotal += updateSubtotal(getElements[i]);
+  //   // console.log(getElement[i]);
+  // }
+
+  let initialValue = 0;
+  for (const product of getElements) {
+    initialValue += updateSubtotal(product);
+    console.log(initialValue);
+  }
 
   // ITERATION 3
-  //... your code goes here
+  document.querySelector('#total-value span').innerHTML = initialValue;
 }
 
 // ITERATION 4
-
+//implementar 71/72 con remove y se conectara con la function de la linea 58
 function removeProduct(event) {
   const target = event.currentTarget;
   console.log('The target in remove is:', target);
